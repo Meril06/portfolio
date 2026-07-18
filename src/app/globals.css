@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  /* Dusk (light) */
+  --bg: #F0EAE2;
+  --surface: #E4DACB;
+  --ink: #241F1A;
+  --muted: #6B5F52;
+  --accent: #C4552E;
+  --line: #2E4A3F;
+  --grain-opacity: 0.05;
+}
+
+.dark {
+  /* Midnight (dark) */
+  --bg: #0E0F14;
+  --surface: #171A22;
+  --ink: #EDEAE2;
+  --muted: #8B8E9B;
+  --accent: #E8935C;
+  --line: #4C7A8C;
+  --grain-opacity: 0.09;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-line: var(--line);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jbmono);
+}
+
+* {
+  border-color: var(--surface);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  transition: background-color 0.7s ease, color 0.7s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.hairline {
+  height: 1px;
+  background: currentColor;
+  opacity: 0.15;
+}
+
+/* Grain overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: var(--grain-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
